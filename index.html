@@ -1,0 +1,554 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>android-simple-facebook by sromku</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>android-simple-facebook</h1>
+        <p>Simple Facebook SDK for Android</p>
+
+        <p class="view"><a href="https://github.com/sromku/android-simple-facebook">View the Project on GitHub <small>sromku/android-simple-facebook</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/sromku/android-simple-facebook/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sromku/android-simple-facebook/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sromku/android-simple-facebook">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="android-simple-facebook" class="anchor" href="#android-simple-facebook"><span class="octicon octicon-link"></span></a>android-simple-facebook</h1>
+
+<p>Simple Facebook API for Android which wraps original <a href="https://github.com/facebook/facebook-android-sdk"><strong>Facebook SDK 3.5</strong></a></p>
+
+<p>This is a library project which makes the life much easier by coding less code for being able to login, publish feeds and open graph stories, invite friends and more. </p>
+
+<p>Since my feeling was that the usage of Facebook SDK was too complicated for simple actions like login, publish feeds and more, I decided to create simpler API for the same actions. I use this API in my applications and maintain the code.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li><a href="https://github.com/sromku/android-simple-facebook#login-1">Login</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#logout-1">Logout</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#publish-feed">Publish feed</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#publish-story-open-graph">Publish story (open graph)</a></li>
+<li>
+<a href="https://github.com/sromku/android-simple-facebook#invite">Invite friend/s</a>
+
+<ul>
+<li><a href="https://github.com/sromku/android-simple-facebook#all">Invite all friends</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#suggested-friends">Invite suggested friends</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#one-friend-only">Invite one friend</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/sromku/android-simple-facebook#get-my-profile">Get profile</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#get-friends">Get friends</a></li>
+</ul><p><em>And,</em></p>
+
+<ul>
+<li>Based on latest Facebook SDK</li>
+<li>Permission strings are predefined</li>
+<li>No need to use <code>LoginButton</code> view for being able to login/logout. You can use any <code>View</code>.</li>
+<li>No need to care for correct login with <code>READ</code> and <code>PUBLISH</code> permissions. Just mention the permissions you need and this library will care for the rest.</li>
+</ul><h2>
+<a name="few-examples" class="anchor" href="#few-examples"><span class="octicon octicon-link"></span></a>Few Examples</h2>
+
+<p>Just to give you the feeling, how simple it is. For all options and examples, follow the <a href="https://github.com/sromku/android-simple-facebook#usage"><strong>usage</strong></a> paragraph.</p>
+
+<h3>
+<a name="login" class="anchor" href="#login"><span class="octicon octicon-link"></span></a>Login</h3>
+
+<p>You can call <code>login(Activity)</code> method on click of any <code>View</code> and you don't need to use <code>LoginButton</code></p>
+
+<div class="highlight"><pre><span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">onLoginListener</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="logout" class="anchor" href="#logout"><span class="octicon octicon-link"></span></a>Logout</h3>
+
+<p>As login, just call it anywhere you need</p>
+
+<div class="highlight"><pre><span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">onLogoutListener</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="invite-friends" class="anchor" href="#invite-friends"><span class="octicon octicon-link"></span></a>Invite friends</h3>
+
+<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">friends</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span>
+<span class="o">{</span>
+    <span class="s">"630243197"</span><span class="o">,</span>
+    <span class="s">"787878788"</span><span class="o">,</span>
+    <span class="s">"751875181"</span>
+<span class="o">};</span>
+
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">invite</span><span class="o">(</span><span class="n">friends</span><span class="o">,</span> <span class="s">"Some free text"</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="get-my-profile" class="anchor" href="#get-my-profile"><span class="octicon octicon-link"></span></a>Get my profile</h3>
+
+<div class="highlight"><pre><span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">getProfile</span><span class="o">(</span><span class="k">new</span> <span class="n">OnProfileRequestAdapter</span><span class="o">()</span>
+<span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">(</span><span class="n">Profile</span> <span class="n">profile</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">firstName</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="na">getFirstName</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">birthday</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="na">getBirthday</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">email</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="na">getEmail</span><span class="o">();</span>
+        <span class="n">String</span> <span class="n">bio</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="na">getBio</span><span class="o">();</span>
+        <span class="c1">// ... and many more properties of profile ...</span>
+    <span class="o">}</span>
+<span class="o">});</span>
+
+</pre></div>
+
+<h3>
+<a name="more-examples" class="anchor" href="#more-examples"><span class="octicon octicon-link"></span></a>More examples</h3>
+
+<p>More API actions is in the same simplicity. Just follow the explanation and examples below.</p>
+
+<hr><h2>
+<a name="setup-project" class="anchor" href="#setup-project"><span class="octicon octicon-link"></span></a>Setup Project</h2>
+
+<ol>
+<li><p>Clone <a href="https://github.com/facebook/facebook-android-sdk">Facebook SDK 3.5</a> or <a href="https://developers.facebook.com/android/">download</a> it. Then, import the project to your workspace.</p></li>
+<li><p>Clone and import this (Simple Facebook) project to your workspace.</p></li>
+<li>
+<p>Add reference from <code>Simple Facebook</code> project to <code>FacebookSDK</code> project.</p>
+
+<p><img src="https://raw.github.com/sromku/android-simple-facebook/master/Refs/reference_to_sdk.png" alt="Screenshot"></p>
+</li>
+<li><p>Now, you can add reference from <strong>your app</strong> to <code>Simple Facebook</code> project.</p></li>
+<li>
+<p>Update the <code>manifest.xml</code> of your application and add next lines:</p>
+
+<div class="highlight"><pre><span class="o">&lt;</span><span class="n">uses</span><span class="o">-</span><span class="n">permission</span> <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"android.permission.INTERNET"</span> <span class="o">/&gt;</span>
+
+<span class="o">&lt;</span><span class="n">activity</span>
+    <span class="nl">android:</span><span class="n">name</span><span class="o">=</span><span class="s">"com.facebook.LoginActivity"</span>
+    <span class="nl">android:</span><span class="n">label</span><span class="o">=</span><span class="s">"@string/app_name"</span>
+    <span class="nl">android:</span><span class="n">theme</span><span class="o">=</span><span class="s">"@android:style/Theme.Translucent.NoTitleBar"</span> <span class="o">/&gt;</span>
+</pre></div>
+</li>
+</ol><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h4>
+<a name="1-just-add-next-lines-in-your-activity-class" class="anchor" href="#1-just-add-next-lines-in-your-activity-class"><span class="octicon octicon-link"></span></a>1. Just add next lines in your <code>Activity</code> class.</h4>
+
+<ul>
+<li>
+<p>Define and select permissions you need:</p>
+
+<div class="highlight"><pre><span class="n">Permissions</span><span class="o">[]</span> <span class="n">permissions</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Permissions</span><span class="o">[]</span>
+<span class="o">{</span>
+    <span class="n">Permissions</span><span class="o">.</span><span class="na">USER_PHOTOS</span><span class="o">,</span>
+    <span class="n">Permissions</span><span class="o">.</span><span class="na">FRIENDS_PHOTOS</span><span class="o">,</span>
+    <span class="n">Permissions</span><span class="o">.</span><span class="na">PUBLISH_ACTION</span>
+<span class="o">};</span>
+</pre></div>
+</li>
+<li>
+<p>Build and define the configuration by putting <code>app_id</code>, <code>namespace</code> and <code>permissions</code>:</p>
+
+<div class="highlight"><pre><span class="n">SimpleFacebookConfiguration</span> <span class="n">configuration</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebookConfiguration</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">setAppId</span><span class="o">(</span><span class="s">"625994234086470"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setNamespace</span><span class="o">(</span><span class="s">"sromkuapp"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setPermissions</span><span class="o">(</span><span class="n">permissions</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</pre></div>
+</li>
+<li>
+<p>And, create <code>SimpleFacebook</code> instance and set this configuration: </p>
+
+<div class="highlight"><pre><span class="n">SimpleFacebook</span> <span class="n">simpleFacebook</span> <span class="o">=</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="n">Activity</span><span class="o">);</span>
+<span class="n">simpleFacebook</span><span class="o">.</span><span class="na">setConfiguration</span><span class="o">(</span><span class="n">configuration</span><span class="o">);</span>
+</pre></div>
+</li>
+</ul><h4>
+<a name="2-run-the-action-login-publish-invite" class="anchor" href="#2-run-the-action-login-publish-invite"><span class="octicon octicon-link"></span></a>2. Run the action (login, publish, invite,…)</h4>
+
+<ul>
+<li><a href="https://github.com/sromku/android-simple-facebook#login-1">Login</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#logout-1">Logout</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#publish-feed">Publish feed</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#publish-story-open-graph">Publish story (open graph)</a></li>
+<li>
+<a href="https://github.com/sromku/android-simple-facebook#invite">Invite friend/s</a>
+
+<ul>
+<li><a href="https://github.com/sromku/android-simple-facebook#all">Invite all friends</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#suggested-friends">Invite suggested friends</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#one-friend-only">Invite one friend</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/sromku/android-simple-facebook#get-my-profile">Get profile</a></li>
+<li><a href="https://github.com/sromku/android-simple-facebook#get-friends">Get friends</a></li>
+</ul><h4>
+<a name="3-override-onactivityresult-method-and-add-this-line" class="anchor" href="#3-override-onactivityresult-method-and-add-this-line"><span class="octicon octicon-link"></span></a>3. Override <code>onActivityResult</code> method and add this line:</h4>
+
+<div class="highlight"><pre><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onActivityResult</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">resultCode</span><span class="o">,</span> <span class="n">Intent</span> <span class="n">data</span><span class="o">)</span>
+<span class="o">{</span>
+    <span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">onActivityResult</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">requestCode</span><span class="o">,</span> <span class="n">resultCode</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span> 
+    <span class="kd">super</span><span class="o">.</span><span class="na">onActivityResult</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span> <span class="n">resultCode</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+<span class="o">}</span> 
+</pre></div>
+
+<h2>
+<a name="actions-examples" class="anchor" href="#actions-examples"><span class="octicon octicon-link"></span></a>Actions (Examples)</h2>
+
+<h3>
+<a name="login-1" class="anchor" href="#login-1"><span class="octicon octicon-link"></span></a>Login</h3>
+
+<p>Set <code>OnLoginOutListener</code> and call for <code>login(OnLoginOutListener)</code></p>
+
+<div class="highlight"><pre><span class="c1">// login listener</span>
+<span class="n">OnLoginListener</span> <span class="n">onLoginListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">OnLoginListener</span><span class="o">()</span>
+<span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">String</span> <span class="n">reason</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">reason</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onException</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Bad thing happened"</span><span class="o">,</span> <span class="n">throwable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onThinking</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// show progress bar or something to the user while login is happening</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"In progress"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLogin</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// change the state of the button or do whatever you want</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Logged in"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onNotAcceptingPermissions</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"User didn't accept read permissions"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+
+<span class="c1">// login</span>
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">onLoginListener</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="logout-1" class="anchor" href="#logout-1"><span class="octicon octicon-link"></span></a>Logout</h3>
+
+<p>Set <code>OnLogoutListener</code> and call for <code>logout(OnLogoutListener)</code> to disconnect from facebook.</p>
+
+<div class="highlight"><pre><span class="c1">// logout listener</span>
+<span class="n">OnLogoutListener</span> <span class="n">onLogoutListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">OnLogoutListener</span><span class="o">()</span>
+<span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">String</span> <span class="n">reason</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">reason</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onException</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Bad thing happened"</span><span class="o">,</span> <span class="n">throwable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onThinking</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// show progress bar or something to the user while login is happening</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"In progress"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onLogout</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"You are logged out"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+
+<span class="c1">// logout</span>
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">logout</span><span class="o">(</span><span class="n">onLogoutListener</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="publish-feed" class="anchor" href="#publish-feed"><span class="octicon octicon-link"></span></a>Publish feed</h3>
+
+<p>Set <code>OnPublishListener</code> and call for <code>publish(Feed, OnPublishListener)</code>.
+You can also publish without setting the listener by calling for <code>publish(Feed)</code> method.</p>
+
+<div class="highlight"><pre><span class="c1">// create publish listener</span>
+<span class="n">OnPublishListener</span> <span class="n">onPublishListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">OnPublishListener</span><span class="o">()</span>
+<span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">String</span> <span class="n">reason</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// insure that you are logged in before publishing</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">reason</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onException</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Bad thing happened"</span><span class="o">,</span> <span class="n">throwable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onThinking</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// show progress bar or something to the user while publishing</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"In progress"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">(</span><span class="n">String</span> <span class="n">postId</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Published successfully. The new post id = "</span> <span class="o">+</span> <span class="n">postId</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="c1">// build feed</span>
+<span class="n">Feed</span> <span class="n">feed</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Feed</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
+    <span class="o">.</span><span class="na">setMessage</span><span class="o">(</span><span class="s">"Clone it out..."</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"Simple Facebook for Android"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setCaption</span><span class="o">(</span><span class="s">"Code less, do the same."</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="s">"The Simple Facebook library project makes the life much easier by coding less code for being able to login, publish feeds and open graph stories, invite friends and more."</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setPicture</span><span class="o">(</span><span class="s">"https://raw.github.com/sromku/android-simple-facebook/master/Refs/android_facebook_sdk_logo.png"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">setLink</span><span class="o">(</span><span class="s">"https://github.com/sromku/android-simple-facebook"</span><span class="o">)</span>
+    <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+
+<span class="c1">// publish the feed</span>
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">publish</span><span class="o">(</span><span class="n">feed</span><span class="o">,</span> <span class="n">onPublishListener</span><span class="o">);</span>
+</pre></div>
+
+<p>And, the <strong>result</strong> is:</p>
+
+<p align="center">
+  <img src="https://raw.github.com/sromku/android-simple-facebook/master/Refs/publish_feed.png" alt="Published feed"></p>
+
+<h3>
+<a name="publish-story-open-graph" class="anchor" href="#publish-story-open-graph"><span class="octicon octicon-link"></span></a>Publish story (open graph)</h3>
+
+<p><em>TBE (to be explained)</em></p>
+
+<h3>
+<a name="invite" class="anchor" href="#invite"><span class="octicon octicon-link"></span></a>Invite</h3>
+
+<p>Facebook supports three kind of dialogs for invite friends. One dialog shows all your friends and user can select who he/she
+wants to invite. In other dialog you set suggested friends only and the last one, you set concrete one friend.</p>
+
+<p>For all options, set <code>OnInviteListener</code>:</p>
+
+<div class="highlight"><pre><span class="n">OnInviteListener</span> <span class="n">onInviteListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">OnInviteListener</span><span class="o">()</span>
+<span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">String</span> <span class="n">reason</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// insure that you are logged in before inviting</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">reason</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onException</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Bad thing happened"</span><span class="o">,</span> <span class="n">throwable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Invitation was sent"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onCancel</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Canceled the dialog"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+</pre></div>
+
+<h4>
+<a name="all" class="anchor" href="#all"><span class="octicon octicon-link"></span></a>All</h4>
+
+<p>Show dialog with a list of all your friends. Call for <code>invite(Activity, String, OnInviteListener)</code>
+The <code>String</code> is the message to be shown in the invitation. </p>
+
+<div class="highlight"><pre><span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">invite</span><span class="o">(</span><span class="s">"I invite you to use this app"</span><span class="o">,</span> <span class="n">onInviteListener</span><span class="o">);</span>
+</pre></div>
+
+<h4>
+<a name="suggested-friends" class="anchor" href="#suggested-friends"><span class="octicon octicon-link"></span></a>Suggested friends</h4>
+
+<p>Show dialog with a list of suggested friends. Set array of user ids.</p>
+
+<div class="highlight"><pre><span class="n">String</span><span class="o">[]</span> <span class="n">friends</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span>
+<span class="o">{</span>
+    <span class="s">"630243197"</span><span class="o">,</span>
+    <span class="s">"584419361"</span><span class="o">,</span>
+    <span class="s">"1456233371"</span><span class="o">,</span>
+    <span class="s">"100000490891462"</span>
+<span class="o">};</span>
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">invite</span><span class="o">(</span><span class="n">friends</span><span class="o">,</span> <span class="s">"I invite you to use this app"</span><span class="o">,</span> <span class="n">onInviteListener</span><span class="o">);</span>
+</pre></div>
+
+<h4>
+<a name="one-friend-only" class="anchor" href="#one-friend-only"><span class="octicon octicon-link"></span></a>One friend only</h4>
+
+<p>Show dialog with only one friend to invite.</p>
+
+<div class="highlight"><pre><span class="n">String</span> <span class="n">friend</span> <span class="o">=</span> <span class="s">"630243197"</span><span class="o">;</span>
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">invite</span><span class="o">(</span><span class="n">friend</span><span class="o">,</span> <span class="s">"I invite you to use this app"</span><span class="o">,</span> <span class="n">onInviteListener</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="get-my-profile-1" class="anchor" href="#get-my-profile-1"><span class="octicon octicon-link"></span></a>Get my profile</h3>
+
+<p>Set <code>OnProfileRequestListener</code> and call for <code>getMyProfile(OnProfileRequestListener)</code></p>
+
+<div class="highlight"><pre><span class="n">OnProfileRequestListener</span> <span class="n">onProfileRequestListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">OnProfileRequestListener</span><span class="o">()</span>
+<span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">String</span> <span class="n">reason</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// insure that you are logged in before getting the profile</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">reason</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onException</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Bad thing happened"</span><span class="o">,</span> <span class="n">throwable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onThinking</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// show progress bar or something to the user while fetching profile</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Thinking..."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">(</span><span class="n">Profile</span> <span class="n">profile</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"My profile id = "</span> <span class="o">+</span> <span class="n">profile</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">getProfile</span><span class="o">(</span><span class="n">onProfileRequestListener</span><span class="o">);</span>
+</pre></div>
+
+<h3>
+<a name="get-friends" class="anchor" href="#get-friends"><span class="octicon octicon-link"></span></a>Get Friends</h3>
+
+<p>Set <code>OnFriendsRequestListener</code> and call for <code>getFriends(OnFriendsRequestListener)</code></p>
+
+<div class="highlight"><pre><span class="n">OnFriendsRequestListener</span> <span class="n">onFriendsRequestListener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleFacebook</span><span class="o">.</span><span class="na">OnFriendsRequestListener</span><span class="o">()</span>
+<span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onFail</span><span class="o">(</span><span class="n">String</span> <span class="n">reason</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="c1">// insure that you are logged in before getting the friends</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="n">reason</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onException</span><span class="o">(</span><span class="n">Throwable</span> <span class="n">throwable</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Bad thing happened"</span><span class="o">,</span> <span class="n">throwable</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onThinking</span><span class="o">()</span>
+    <span class="o">{</span>
+        <span class="c1">// show progress bar or something to the user while fetching friends</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Thinking..."</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onComplete</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Profile</span><span class="o">&gt;</span> <span class="n">friends</span><span class="o">)</span>
+    <span class="o">{</span>
+        <span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="n">TAG</span><span class="o">,</span> <span class="s">"Number of friends = "</span> <span class="o">+</span> <span class="n">friends</span><span class="o">.</span><span class="na">size</span><span class="o">());</span>
+    <span class="o">}</span>
+
+<span class="o">};</span>
+
+<span class="n">mSimpleFacebook</span><span class="o">.</span><span class="na">getFriends</span><span class="o">(</span><span class="n">onFriendsRequestListener</span><span class="o">);</span>
+</pre></div>
+
+<h2>
+<a name="more-options" class="anchor" href="#more-options"><span class="octicon octicon-link"></span></a>More options</h2>
+
+<ul>
+<li>
+<code>isLogin()</code> – check if you are logged in</li>
+<li>
+<code>getAccessToken()</code> - get current access token</li>
+<li>
+<code>clean()</code> - Clean all references like <code>Activity</code> to prevent memory leaks</li>
+</ul><h2>
+<a name="sample-application" class="anchor" href="#sample-application"><span class="octicon octicon-link"></span></a>Sample Application</h2>
+
+<p><em>TBE (to be explained)</em></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2013-present Roman Kushnarenko
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sromku">sromku</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
