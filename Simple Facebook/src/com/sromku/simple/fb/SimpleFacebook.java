@@ -771,12 +771,8 @@ public class SimpleFacebook
 		Session session = Session.getActiveSession();
 		if (session == null)
 		{
-			if (session == null)
-			{
-				session = new Session.Builder(mActivity.getApplicationContext())
-					.setApplicationId(mConfiguration.getAppId())
-					.build();
-			}
+			session = new Session.Builder(mActivity.getApplicationContext())
+					.setApplicationId(mConfiguration.getAppId()).build();
 			Session.setActiveSession(session);
 		}
 		if (session.isOpened())
